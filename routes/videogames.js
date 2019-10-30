@@ -29,4 +29,17 @@ router.get('/', function(req, res, next) {
   return res.send(Object.values(videogames));
 });
 
+/* Delete a videogame */
+router.delete('/:id', function(req, res, next) {
+  let id = parseInt(req.params.id);
+
+  videogames.forEach( (videogame) => {
+      if(videogame.id === id) {
+         videogames.splice( videogames.indexOf(videogame), 1);
+      }
+  });
+
+  res.status(200).send({message: 'deleted'});
+});
+
 module.exports = router;
